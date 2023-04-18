@@ -1,0 +1,265 @@
+// Using vh will not work when screen is too small, beware.
+$information-background :rgb(36, 36, 36);
+
+.home-main{
+    height: calc(100vh - 56px) ;
+    overflow: auto;
+    scroll-snap-type: y mandatory;
+
+    .background{
+        position: relative;
+        height: calc(100vh - 56px);
+        scroll-snap-align: start;
+        
+        .background-images{
+            position: absolute;
+            width: 100%;
+            height: 97vh;
+            z-index: -1;
+        }
+        
+        .content-container{
+            padding: 0 50px;
+
+            .item-frame{
+                margin: auto;
+                font-size:20px;
+
+                .inner-content{
+                    font-size:14px;
+                    padding:20px;
+                    color: #BF7272; 
+
+                    .title{
+                        font-size: 52px;
+                        // font-weight: 700;
+                        font-family: mainFont-bold; 
+                    }
+
+                    .sub-title{
+                        padding-top: 40px;
+                        // font-family:mainfont-bold;
+                        font-size:20px
+                    }
+
+                    #brandname path:nth-child(1){
+                        stroke-dasharray: 607.9520874023438px;
+                        stroke-dashoffset: 607.9520874023438px;
+                    }
+                    
+                    #brandname path:nth-child(2){
+                        stroke-dasharray: 534.3695678710938px;
+                        stroke-dashoffset: 534.3695678710938px;
+                    }
+                    
+                    #brandname path:nth-child(3){
+                        stroke-dasharray: 714.5155639648438px;
+                        stroke-dashoffset: 714.5155639648438px;
+                    }
+                    
+                    #brandname path:nth-child(4){
+                        stroke-dasharray: 536.6881103515625px;
+                        stroke-dashoffset: 536.6881103515625px;
+                    }
+                    
+                    #brandname path:nth-child(5){
+                        stroke-dasharray: 607.9525146484375px;
+                        stroke-dashoffset: 607.9525146484375px;
+                    }
+                    
+                    #brandname path:nth-child(6){
+                        stroke-dasharray: 364.6099853515625px;
+                        stroke-dashoffset: 364.6099853515625px;
+                    }
+                }
+            }
+        }
+
+        .tab-container{
+            float: right;
+
+            // Image for tablet jpg
+            .tablet{
+                width:550px;
+                height:400px;
+            }
+            
+            .tablet-pen{
+                width:100px;
+                height:300px;
+            }
+        }
+    }
+
+    .information-div{
+        background-color: $information-background;
+
+        .side-image{
+            width: calc(50% - 60px);
+            height: calc(100vh - 116px); //116 is the total height = (56px from the nav) + (30*2 = 60px from padding) 
+            background-color: #BF7272;
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            // display:table-cell; 
+            // vertical-align:middle; 
+            // text-align:center;
+            padding: 30px;
+
+            .project-container{
+                height: 100%;
+                overflow: auto;
+                padding: 0 10px;
+
+                &::-webkit-scrollbar {
+                    width: 1em;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    border-radius: 2px;
+                    background-color: #363636;
+                    outline: 1px solid #363636;
+                }
+                // padding: 20px;
+                
+                .grid {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    grid-gap: 20px;
+                  }
+            
+                  .header {
+                    text-align: center;
+                    font-size: 24px;
+                    font-weight: bold;
+                    margin: 20px 0;
+                  }
+            
+                  .grid-item {
+                    // background-color: #f2f2f2;
+                    padding: 20px;
+                    text-align: center;
+                    font-size: 16px;
+                    background-color: #BF7272;
+                    cursor: pointer;
+                    
+                    .project-title{
+                        font-size: 12px;
+                        line-height:1.3em;
+                    }
+
+                    .centralize-image{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        .image-display{
+                            max-width: 100%;
+                            max-height: 80px;
+                            
+                        }
+                    }
+                    
+
+                    &:hover{
+                        background-color:rgba($color: rgb(0, 0, 0), $alpha: 0.2);
+                        border-radius: 5px;
+                        transition: background-color 0.5s ease-in;
+                    }
+                  }
+            }
+
+            img{  
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+
+        .side-text{
+            height: 100%;
+            width: 50%;
+            padding: 100px;
+            display: flex;
+            justify-content : center;
+            align-items: center;
+            flex-direction: column;
+            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+            box-sizing: border-box;         /* Opera/IE 8+ */
+                   
+            h1{
+                font-size: 30px;
+                font-family: mainFont-bold; 
+                margin: 0;
+            }
+
+            .divider{
+                width: 30px;
+                height: 2.5px;
+                background-color: white;
+                border: 10px solid $information-background;
+            }
+
+            .text-info{
+                text-align: center;
+                font-size: 18px;
+                font-family: mainFont-regular; 
+                line-height: 1.6;
+            }
+
+            button{
+                border-radius: 20px;
+                height: 40px;
+                min-width:130px;
+                max-width: 160px;
+                border: none;
+                box-shadow: none;
+                margin-top: 10px;
+                padding: 8px 16px;
+                font-size: 16px;
+                font-family: mainFont-bold;
+                color: black;
+                background-color: #BF7272;
+                cursor: pointer;
+                
+                &:hover{
+                    background-color: #b16868;
+                }
+            }
+        }
+
+        .left{
+            float:left;
+        }
+
+        .right{
+            float:right;
+        }
+    }
+}
+
+@keyframes brand-animation{
+    to{
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes brand-fill{
+    from{
+        fill:transparent;
+    }
+    to{
+        fill: #BF7272
+    }
+}
+
+@keyframes notebook {
+    from {transform: translateX(-50%);}
+    to { transform: 0;}
+}
+@keyframes items {
+    from {transform: translateX(50%);}
+    to { transform: 0;}
+}
+    

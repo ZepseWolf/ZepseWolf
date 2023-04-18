@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+ 
+html, body { height: 100%; }
+body { margin: 0; font-family: "mainFont-regular";
+    color: white; overflow:hidden;
+}
+
+@font-face {
+    font-family: 'mainFont-regular';
+    src: 
+         url('assets/font/montserrat-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'mainFont-bold';
+    src: 
+         url('assets/font/montserrat-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

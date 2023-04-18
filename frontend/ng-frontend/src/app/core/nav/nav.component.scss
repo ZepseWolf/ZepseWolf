@@ -1,0 +1,244 @@
+
+$topNavBar-height: 54px;
+$icon-color: #c06464;
+$hover-color: rgba(90, 90, 90, 0.3);
+$border-color : rgb(45, 29, 54);
+
+.main{
+    font-family: 'mainFont-regular';
+    font-weight: 600; 
+}
+
+.nav-air{
+    height: 56px;
+    width: 100%;
+    position: block;
+}
+
+.top-menu{
+    height: $topNavBar-height;
+    background: black;
+    border-bottom: 2px solid $border-color;
+    position: fixed;
+    width: 100%;
+    
+    .icon-container{
+        display: flex;
+        align-items: center;
+        justify-items: center;
+        width: 50px;
+        height: 100%;
+        margin: 0;
+        &:hover{
+            background-color: $hover-color;
+        }
+
+        .icon{
+            color: $icon-color;
+            cursor: pointer;
+            padding: 0 17px;
+            margin: 0px 0px;
+            font-size: 22px;
+        }
+    }
+    
+
+    .logo{
+        z-index: 2;
+        position: absolute ;
+        left: 50%;
+        margin-left: -68px;
+        height: $topNavBar-height;
+        cursor: pointer;
+    }
+
+    .top-dropdown {
+        float: right;
+        position: relative;
+        display: inline;
+        
+        .dropbtn{
+            height: $topNavBar-height;
+            width: 62px;
+            font-size: 14px;
+            color: white;
+            text-decoration: none;
+            display: block;
+
+            &:hover {
+                background-color: rgba(199, 199, 199, 0.15);
+                color:  black;
+            }
+
+            .login_logo{
+                width: 50px;
+                height: 50px;
+                right: 8px; 
+                top: 5px;
+                position: absolute ;
+            }
+        }
+
+        .profile-pic{
+            border: $icon-color;
+            border-radius: 50% ;
+            width: 32px;
+            height: 32px;
+        }
+
+        .top-dropdown-list {
+            top:60px;
+            display: none;
+            position: absolute;
+            background-color: black;
+            min-width: 160px;
+            height: auto;
+            border:$border-color 1px solid;;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            right: 0;
+            z-index: 1;
+            // white-space:nowrap;
+            
+            .dropdown-item{ 
+                display: flex;
+                align-items: center;
+                color: rgb(255, 255, 255,0.7);
+                height: 40px;
+                cursor: pointer;
+               
+
+                &:hover{
+                    color: #ffffff;
+                    background-color: $hover-color;
+                }
+
+                mat-icon{
+                    margin: 0 12px;
+                    padding: 0;
+                    font-size: 20px;
+                }
+            }
+            
+        }
+
+        .show {display: block;}
+    }
+} 
+
+.right {
+    float: right;
+}
+
+@keyframes moveRight{
+    0%{
+        opacity: 0; 
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes navFading{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to right, black 250px,rgba(53, 53, 53, 0.8) 250px, rgba(53, 53, 53, 0.8) 100%);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+
+    a {
+        text-decoration: none;
+        font-size: 18px;    
+        color: #c5c5c5;
+        display: inline;
+        transition: 0.3s;
+        &:hover{
+            color: #f1f1f1;
+        }
+    }
+
+    .sidenav-div{
+        padding: 8px 8px 8px 40px;
+        display: block;
+    }
+
+}
+
+
+
+@media screen and (max-height: 450px) {
+    // To Do: // Add mobile version
+    // .sidenav {padding-top: 15px;}
+    // .sidenav a {font-size: 18px;}
+}
+
+/* -------------------------------------------------- GRAVEYARD --------------------------------------------
+ul{ 
+    text-align: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    //background: black;
+}
+
+li {
+    display: inline;
+}
+
+li a {
+    z-index: 2;
+    font-family: "mainFont-regular";
+    position: relative ;
+    font-size: 24px;
+    top: 16px;
+    color:rgb(219,234,255);
+    //background: -webkit-linear-gradient(rgb(219,234,255), #eee);
+    //text-shadow:2px 2px 2px rgba(#b9b9b9,0.5)  ;
+    //color: rgb(219,234,255);
+    //-webkit-background-clip: text;
+    text-align: center;
+    padding: 10px 40px 10px 16px ;
+    text-decoration: none;
+   // -webkit-text-fill-color: transparent;
+}
+
+h1{
+    background: #F9445A; // this is a test to remove
+    color: white;
+    clip-path: polygon(0 0 ,10% 50%, 30% 100% ,0 100% );
+}
+
+ul::before,
+ul::after{
+    // nothing inside
+   // width: 100%;
+    //height: 50px;
+    //position: absolute;
+    //left: 0;
+   // top: 16px ;
+    
+}
+ul::after{
+    //color: #09e485;
+
+    //clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+    //clip-path: polygon(0 0 ,50% 0, 30% 100% ,0 100% );
+}
+li a:hover {
+    //background: #09e485;
+    color: rgb(214, 214, 214);
+}
+*/

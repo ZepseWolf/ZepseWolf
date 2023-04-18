@@ -1,0 +1,103 @@
+section{
+    /* Firefox */
+    // height:100vh;
+}
+
+$loaderBackground : #424242;
+.backgroundAid{
+  background-image: url("/assets/img/background.jpg");
+  background-size: cover;
+  background-position: center;
+  position: fixed ;
+  top:0;
+  left: 0;
+  width:100%;
+  height: 100%;
+  z-index: -7;
+}
+#left-curtain {
+    background-color: $loaderBackground ;
+    position: fixed ;
+    font-size: 30px;
+    color: #BF7272;
+    bottom: 0px ;
+    left: 0px ;
+    right: 0px ;
+    top: 0px ;
+    width: 50%;
+    z-index: 11;
+}
+
+#right-curtain {
+  background-color: $loaderBackground ;
+  position: fixed ;
+  font-size: 30px;
+  color: #BF7272;
+  right: 0px ;
+  top: 0px ;
+  bottom: 0px ;
+  left: 50% ;
+  width: 50%;
+  z-index: 10;
+}
+
+#loader {
+  border: 16px solid #ffffff;
+  border-radius: 50%;
+  border-top: 16px solid #BF7272;
+  width: 104px;
+  height: 104px;
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -66px;
+  margin-left: -66px;
+  transform-origin:center;
+  z-index: 11;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+#loader_fill{
+  // border: 1px solid rgba(255, 255, 255, 0);
+  border-radius: 50%;
+  width: 138px;
+  height: 138px;
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -67px;
+  margin-left: -67px;
+  z-index: 12;
+}
+
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes fill_loader {
+    0% { background-color: 0; }
+    100% { background-color: #BF7272; }
+  }
+  @keyframes border_fill {
+    0% { background-color: #ffffff00; }
+    100% { background-color: #BF7272; }
+  }
+  @keyframes background_fill {
+    0% { background-color: $loaderBackground; }
+    100% { background-color: #BF7272; }
+  }
+  @keyframes curtain-move-left {
+      from {transform: 0;}
+      to { transform: translateX(-150%);}
+  }
+  @keyframes curtain-move-right {
+      from {transform: 0;}
+      to { transform: translateX(150%);}
+  }

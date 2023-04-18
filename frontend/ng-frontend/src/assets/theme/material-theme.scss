@@ -1,0 +1,89 @@
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+$mat-primary: (
+    50 : #e0ebf7,
+    100 : #b3cdea,
+    200 : #80abdd,
+    300 : #4d89cf,
+    400 : #2670c4,
+    500 : #0057ba,
+    600 : #004fb3,
+    700 : #0046ab,
+    800 : #003ca3,
+    900 : #002c94,
+    A100 : #bfcdff,
+    A200 : #8ca5ff,
+    A400 : #597dff,
+    A700 : #4069ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #ffffff,
+    )
+);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$mat-accent: (
+    50 : #e0ebf7,
+    100 : #b3cdea,
+    200 : #80abdd,
+    300 : #4d89cf,
+    400 : #2670c4,
+    500 : #0057ba,
+    600 : #004fb3,
+    700 : #0046ab,
+    800 : #003ca3,
+    900 : #002c94,
+    A100 : #bfcdff,
+    A200 : #8ca5ff,
+    A400 : #597dff,
+    A700 : #4069ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #ffffff,
+    )
+);
+
+
+$RGBArtFace-primary: mat-palette($mat-primary);
+$RGBArtFace-accent: mat-palette($mat-accent);
+
+// The warn palette is optional (defaults to red).
+// $RGBArtFace-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$RGBArtFace-theme: mat-light-theme($RGBArtFace-primary, $RGBArtFace-accent);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($RGBArtFace-theme);

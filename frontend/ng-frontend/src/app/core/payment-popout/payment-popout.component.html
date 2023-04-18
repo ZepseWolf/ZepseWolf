@@ -1,0 +1,47 @@
+<div class="container">
+  <i class="fa-solid fa-xmark" style="margin:4px ;position: absolute; top:0 ;right:0; cursor: pointer;z-index:10" (click)="close()"></i>
+    <div class="content wallet" (click)="review(true)">
+        <div class="title" id="walletTitle"><div  style="margin-left:4px">Wallet</div><i class="fa-solid fa-wallet"></i></div>
+        <div *ngIf="initWallet" class="inner-forms">
+            <form class="form" (ngSubmit)="submitForm()">
+              <div>
+                Balance : $
+              </div>
+              <div>
+                Avalible Balance : $
+              </div>
+              <div>
+                <label for="fname">Bid price: $</label>
+                <input type="text" id="fname" name="fname" autocomplete="off">
+              </div>
+                <!-- <mat-form-field appearance="outline">
+                  <mat-label>Username</mat-label>
+                  <input matInput placeholder="Username" formControlName="username" name="username">
+                </mat-form-field>
+      
+                <mat-form-field  appearance="outline">
+                  <mat-label>Password</mat-label>
+                  <input matInput placeholder="Password" formControlName="password" name="password">
+                </mat-form-field> -->
+      
+                <div class="form-group">
+                  <button class="btn submit-button" >Bid</button>
+                </div>
+              </form>
+        </div>
+    </div>
+    <div class="divider">
+        <div class="top"></div>
+        <div class="bottom"></div>
+    </div>
+    <div class="content top-up" (click)="review(false)">
+        <div class="title" id="topUpTitle"><div  style="margin-left:4px" >Top Up</div> <i class="fa-solid fa-wallet"></i></div>
+        
+        <div *ngIf="initTopUp" class="inner-forms">
+            <img src="assets/svg/card_visa.svg" style="width:100px; height: auto;"/>
+            <img src="assets/svg/card_mastercard.svg" style="width:100px; height: auto;"/>
+            <img src="assets/svg/card_amex.svg" style="width:100px; height: auto;"/>
+        </div>
+    </div>
+
+</div>

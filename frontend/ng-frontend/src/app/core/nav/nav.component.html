@@ -1,0 +1,60 @@
+
+<div class="top-menu ">
+
+    <!-- <img src="assets/img/menu_icon.png" class="icon" /> -->
+    <div class="icon-container right">
+      <i class="fa-solid fa-user icon"></i>
+    </div>
+    
+ 
+  
+  <img routerLink="/" src="assets/img/wolfart.png" class="logo"/> 
+  <div class="icon-container" (click)="openSideNav()">
+    <i class="fa-solid fa-bars icon"></i>
+  </div>
+  
+  
+  <!-- <ng-container *ngIf="isLoggedIn" >
+    <div class="top-dropdown" (click)="openTopNav()" >
+      <div class="icon"> 
+        <img [src]="loginIcon" class="profile-pic ">
+      </div>
+
+      <div id="myDropdown" class="top-dropdown-list ">
+        <div routerLink="/" class="dropdown-item"> <i class="fa-solid fa-user"></i> Profile</div>
+        <div routerLink="/" class="dropdown-item"> <i class="fa-solid fa-gear"></i>Setting</div>
+        <div routerLink="/login" (click)="clearSessions()" class="dropdown-item"><i class="fa-solid fa-right-from-bracket"></i> <div>Log Out</div></div>
+
+      </div>
+    </div>
+
+  </ng-container> -->
+
+  
+</div>
+
+<div id="mySidenav" class="sidenav main" (click)="closeSideNav()" >
+  <div class="sidenav-div"><a routerLink="/home" (click)="closeSideNav()">Home</a></div>
+  <div class="sidenav-div"><a routerLink="/feed" (click)="closeSideNav()">Feed</a></div>
+  <div class="sidenav-div"><a routerLink="/create" (click)="closeSideNav()">Create</a></div>
+  <div class="sidenav-div"><a routerLink="/transaction" (click)="closeSideNav()">Transactions</a></div>
+  <div class="sidenav-div"><a routerLink="/user" (click)="closeSideNav()">Users</a></div>
+</div>
+
+<div class="nav-air">
+
+</div>
+<!------------------------------------------------------------------------------- GRAVEYARD-------------------------------------  
+
+ <img src="assets/img/niceArrowRight.png" class="arrow" [style.left.%]="left" > -->
+      <!--- <ul [ngClass]="{
+      'noViewNav': !navBoolean,
+      'viewNav': navBoolean
+      }" data-header="Home">
+        <li><a routerLink="/introduction" data-header="Home">Home</a></li> 
+        <li><a routerLink="/create" data-header="Create">Create</a></li> 
+        <li><a routerLink="/transaction" data-header="Transaction">Transaction</a></li>
+        <li><a routerLink="/user"data-header="Users">Users</a></li>
+      </ul> 
+
+-->
