@@ -18,6 +18,7 @@ import { SmartcityModule } from './modules/smartcity/smartcity.module';
 import { SnapnypModule } from './modules/snapnyp/snapnyp.module';
 import { SteganoModule } from './modules/stegano/stegano.module';
 import { VtepModule } from './modules/vtep/vtep.module';
+import { LorableModule } from './modules/lorable/lorable.module';
 
 const routes: Routes = [
   {path: '' , redirectTo: 'home' , pathMatch: 'full' },
@@ -73,6 +74,10 @@ const routes: Routes = [
   {
     path: 'vtep',
     loadChildren:() => VtepModule
+  },
+  {
+    path: 'lorable',
+    loadChildren:() => LorableModule
   },
   {path: '**' , redirectTo: 'home'}
 ];

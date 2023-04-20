@@ -1,10 +1,9 @@
 <div class="home-main">
-  <div class="background">
+    <div class="background ">
         <img id="brand-notebook" class="background-images" src="assets/img/notebook.png"  >
         <img id="brand-camera" class="background-images" src="assets/img/items.png" >
-    
-    
-        <div class="content-container" >
+        
+        <div class="content-container first-page-container" >
             <div class="item-frame ">
                 <div class="inner-content" > 
                     <br/>
@@ -18,12 +17,16 @@
                         <path d="M535.154 103L512.114 70.6C509.522 70.888 506.834 71.032 504.05 71.032H476.978V103H466.322V2.2H504.05C516.914 2.2 526.994 5.272 534.29 11.416C541.586 17.56 545.234 26.008 545.234 36.76C545.234 44.632 543.218 51.304 539.186 56.776C535.25 62.152 529.586 66.04 522.194 68.44L546.818 103H535.154ZM503.762 61.96C513.746 61.96 521.378 59.752 526.658 55.336C531.938 50.92 534.578 44.728 534.578 36.76C534.578 28.6 531.938 22.36 526.658 18.04C521.378 13.624 513.746 11.416 503.762 11.416H476.978V61.96H503.762Z" stroke="#BF7272" stroke-width="2" mask="url(#path-1-outside-1)"/>
                         <path d="M588.562 11.416H553.138V2.2H634.643V11.416H599.219V103H588.562V11.416Z" stroke="#BF7272" stroke-width="2" mask="url(#path-1-outside-1)"/>
                     </svg>       -->
-                    <div class="sub-title">FULLSTACK DEVELOPER</div>
+                    <div class="sub-title" >FULLSTACK DEVELOPER</div>
+                    <div class="sub-title"style="font-family: mainFont-bold; margin-top:20px">Contact me at :</div>
+                    <div class="sub-title"><img src="assets/img/github.png"/><a href="https://github.com/ZepseWolf">https://github.com/ZepseWolf</a></div>
+                    <div class="sub-title"><img src="assets/img/linkin.png"/><a href="https://www.linkedin.com/in/see-kai-cong-714b35153/">https://www.linkedin.com/in/see-kai-cong-714b35153/</a></div>
+                    <div class="sub-title"><img src="assets/img/email.png"/>seekaicong@gmail.com</div>
                 </div>
             </div>
 
             <div class="tab-container">
-                <div class="inner-content" >
+                <div class="inner-content fix-bottom" >
                     <svg #svgTablet id="svgTablet" class="tablet" viewBox="0 0 2917 2236" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <rect width="2917" height="2236" fill="url(#pattern1)"/>
                         <path class="test" d="M89.5 2085.5V142C89.5 138.158 89 119.5 104 106C119 92.4999 123 93.9999 128 93.9999C133 93.9999 2760.5 89.4999 2760.5 89.4999C2760.5 89.4999 2796.26 88.8521 2812 99.5C2829 111 2829.5 145.5 2829.5 145.5L2826.5 2102C2826.5 2102 2825 2116.5 2816.5 2130C2808 2143.5 2790 2143.5 2790 2143.5L143 2147C143 2147 119.5 2147 103.5 2134.5C87.5001 2122 89.5 2085.5 89.5 2085.5Z" stroke="black"/>
@@ -97,8 +100,26 @@
     </div>
 
     <div class="background information-div">
+
         <div class="side-image left">
             <div class="project-container">
+                <!-- <div class="filter-fix">
+                    <i class="fa-solid fa-filter" style="cursor:pointer" (click)="showFilter($event)"></i>
+                    <div class="dropdown-sort show ">
+                        <div id="checkbox-grid">
+                            <div class="row">
+                            <ng-container *ngFor="let tool of allTools;index as i">
+                                <div class="cell">
+                                    <input type="checkbox" (change)="onItemChecked($event,tool)" checked/>
+                                    <img [src]="'assets/img/'+tool+'.png'">
+                                    {{tool}}
+                                    
+                                  </div>
+                            </ng-container>
+                            </div>
+                          </div>
+                    </div>
+                </div> -->
                 <div class="header">Industry Projects</div>
                 <div class="grid">
                     <div class="grid-item"  routerLink="/edoc">
@@ -122,10 +143,10 @@
                 </div>
                 <div class="header">Self Projects</div>
                 <div class="grid">
-                    <div class="grid-item"  routerLink="/scope">
+                    <div class="grid-item"  routerLink="/home">
                         <p class="project-title">Portfolio Website (2023)</p>
                         <div class="centralize-image">
-                            <img class="image-display" src="assets/img/scope.png"/>         
+                            <img class="image-display" src="assets/img/portfolio.png"/>         
                         </div>
                     </div>
                 </div>
@@ -200,7 +221,7 @@
             <h1>Projects</h1> 
             <div class="divider"></div>
             <div class="text-info">
-               These are the project I had worked on over the years , I will only display the part of the project i worked on. 
+               These are the projects I had worked on over the years , I will only display the part of the project i had worked on. 
                 
                 Click on the projects to learn more. 
             </div>

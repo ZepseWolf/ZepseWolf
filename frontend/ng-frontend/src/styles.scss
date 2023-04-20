@@ -5,6 +5,13 @@ body { margin: 0; font-family: "mainFont-regular";
     color: white; overflow:hidden;
 }
 
+a{
+    color:#BF7272;
+    &:visited{
+        color: #BF7272;
+    }
+}
+
 @font-face {
     font-family: 'mainFont-regular';
     src: 
