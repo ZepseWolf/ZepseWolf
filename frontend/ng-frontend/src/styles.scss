@@ -5,11 +5,29 @@ body { margin: 0; font-family: "mainFont-regular";
     color: white; overflow:hidden;
 }
 
+*{
+    &::-webkit-scrollbar {
+        width: 1em;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        border-radius: 2px;
+        background-color: #363636;
+        outline: 1px solid #363636;
+    }
+}
+
 a{
     color:#BF7272;
     &:visited{
         color: #BF7272;
     }
+}
+
+.main-shadow-theme{
+    box-shadow: 0px 3px 6px 1px rgba(0,0,0,0.1);
+    -webkit-box-shadow: 0px 3px 6px 1px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 3px 6px 1px rgba(0,0,0,0.1);
 }
 
 @font-face {

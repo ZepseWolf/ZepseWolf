@@ -153,7 +153,11 @@ export class HomeComponent implements OnInit ,AfterViewInit {
       }
     ]
   };
+
   allProjectView:any;
+
+  slideIndex: number = 1;
+
   ngAfterViewInit(): void {
     this._lifeCycleService.initCheck();
   }
@@ -162,12 +166,11 @@ export class HomeComponent implements OnInit ,AfterViewInit {
     var self = this;
     this.allProjectView = this.allProject;
     this.getAllPossibleTool();
-    console.log(this.allTools);
     self._lifeCycleService.completedLifeCycle.subscribe((cb)=>{
       // if(cb){
       
       // }
-      
+      this.showSlides(this.slideIndex);
     });
   }
 
@@ -249,5 +252,36 @@ export class HomeComponent implements OnInit ,AfterViewInit {
       }
     }
     
+  }
+
+  public currentSlide(n: number): void {
+    this.showSlides(this.slideIndex = n);
+  }
+
+  public plusSlides(n: number): void {
+    this.showSlides(this.slideIndex += n);
+  }
+
+  private showSlides(n: number): void {
+    const slides: HTMLCollectionOf<Element> = document.getElementsByClassName("mySlides");
+    const dots: HTMLCollectionOf<Element> = document.getElementsByClassName("dot");
+    
+    if (n > slides.length) { 
+      this.slideIndex = 1; 
+    }
+    if (n < 1) { 
+      this.slideIndex = slides.length; 
+    }
+    
+    for (let i = 0; i < slides.length; i++) {
+      (slides[i] as HTMLElement).style.display = "none";
+    }
+    
+    for (let i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    
+    (slides[this.slideIndex - 1] as HTMLElement).style.display = "flex";
+    dots[this.slideIndex - 1].className += " active";
   }
 }
