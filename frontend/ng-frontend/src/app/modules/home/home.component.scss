@@ -113,6 +113,7 @@ $information-background :rgb(36, 36, 36);
                     width: calc(100% - 50px);
                     height: calc(100% - 50px);
                     padding: 25px;
+                  
                     // display: flex;
                     // align-items: center;
                     // justify-content: center;
@@ -130,6 +131,7 @@ $information-background :rgb(36, 36, 36);
                     width: 100%;
                     height: 100%;
                     position: relative;
+                    // background-color: #363636;
                     // margin: auto;
 
                     .featured-tag{
@@ -138,13 +140,9 @@ $information-background :rgb(36, 36, 36);
                         padding: 8px;
                         right: 0;
                         font-size: 12px;
-                        // left: -40px;
-                        // top: -15px;
-                        // transform: rotate(-33deg);
                         z-index: 1;
                         border-radius: 5px;
-                        // border-top: rgb(229, 245, 255) 2px solid;
-                        // border-bottom: rgb(229, 245, 255) 2px solid;
+
                     }
                   }
                   
@@ -158,7 +156,6 @@ $information-background :rgb(36, 36, 36);
                     
 
                     img {
-                        // flex: 0 0 100%;
                         max-width:100%;
                         max-height: 100%;
                     }
@@ -203,17 +200,6 @@ $information-background :rgb(36, 36, 36);
                     background-color: #000000ba;
                   }
                   
-                  /* Number text (1/3 etc) */
-                  
-                //   .numbertext {
-                //     color: #f2f2f2;
-                //     font-size: 12px;
-                //     padding: 8px 12px;
-                //     position: absolute;
-                //     top: 0;
-                //   }
-                  
-                  /* The dots/bullets/indicators */
                   .dot-container{
                     text-align:center;
                     position: absolute;
@@ -229,8 +215,7 @@ $information-background :rgb(36, 36, 36);
                         height: 8px;
                         width: 8px;
                         margin: 0 2px;
-                        // background-color: #bbb;
-                        border: solid white 2px;
+                        border: solid #BF7272 2px;
                         border-radius: 50%;
                         display: inline-block;
                         transition: background-color 0.6s ease;
