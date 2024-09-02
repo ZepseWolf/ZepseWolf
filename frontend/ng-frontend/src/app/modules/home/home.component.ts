@@ -172,6 +172,9 @@ export class HomeComponent implements OnInit ,AfterViewInit {
       // }
       this.showSlides(this.slideIndex);
     });
+    setInterval(()=>{
+      this.plusSlides(1)
+    },5000)
   }
 
   public startNow(): void{
