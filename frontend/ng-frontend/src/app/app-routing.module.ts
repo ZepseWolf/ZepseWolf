@@ -19,6 +19,7 @@ import { SnapnypModule } from './modules/snapnyp/snapnyp.module';
 import { SteganoModule } from './modules/stegano/stegano.module';
 import { VtepModule } from './modules/vtep/vtep.module';
 import { LorableModule } from './modules/lorable/lorable.module';
+import { AirstrikeModule } from './modules/airstrike/airstrike.module';
 
 const routes: Routes = [
   {path: '' , redirectTo: 'home' , pathMatch: 'full' },
@@ -78,6 +79,10 @@ const routes: Routes = [
   {
     path: 'lorable',
     loadChildren:() => LorableModule
+  },
+  {
+    path: 'airstrike',
+    loadChildren:() => AirstrikeModule
   },
   {path: '**' , redirectTo: 'home'}
 ];

@@ -33,18 +33,18 @@
                             <div class="slideshow-container">
                                 <!-- Full-width images with number and caption text -->
                                  <div class="featured-tag main-shadow-theme" >Featured⭐</div>
-                                <div class="mySlides fade">
+                                <div class="mySlides fade" routerLink="/airstrike">
                                     <img src="assets/img/Capstone_Poster.png">
                                     <div class="text">Airstrike - Detect Malisious Website with CNN & BILSTM <br/>( 86% Validation Accuracy )</div>
                                 </div>
                             
                                 <div class="mySlides fade">
-                                    <img src="assets/img/edoc.png" >
+                                    <img src="assets/img/edoc.png" routerLink="/edoc" >
                                     <div class="text">Student's Medical E-Document Evaluation Platform <br/>( Evaluate 150 student every trimester )</div>
                                 </div>
                             
                                 <div class="mySlides fade">
-                                    <img src="assets/img/xvtep.png">
+                                    <img src="assets/img/xvtep.png" routerLink="/vtep">
                                     <div class="text">Wire-Bond Capacitance Testing Interface <br/>( System valued at $100,000+ globally )</div>
                                 </div>
                             
@@ -159,98 +159,31 @@
                             </div>
                           </div>
                     </div>
-                </div> -->
+                </div> -->  
                 <div class="header">Industry Projects</div>
                 <div class="grid">
-                    <div class="grid-item"  routerLink="/edoc">
-                        <p class="project-title">Student's Medical E-Document Evaluation Platform (2023)</p>
+                    <div *ngFor="let project of allProjectView.industryProject" class="grid-item" [routerLink]="project.path">
+                        <p class="project-title">{{project.title}} ({{project.yearCompleted}})</p>
                         <div class="centralize-image">
-                            <img class="image-display" src="assets/img/edoc.png"/>         
-                        </div>
-                    </div>
-                    <div class="grid-item"  routerLink="/vtep">
-                        <p class="project-title">Wire-Bond Capacitance Testing Interface (2021)</p>
-                        <div class="centralize-image">
-                            <img class="image-display" src="assets/img/xvtep.png"/>         
-                        </div>
-                    </div>
-                    <div class="grid-item"  routerLink="/matching">
-                        <p class="project-title">Matching Server with IBM Watson (2018)</p>
-                        <div class="centralize-image">
-                            <img class="image-display" src="assets/img/matching.png"/>         
+                            <img class="image-display" [src]="project.imgSrc"/>         
                         </div>
                     </div>
                 </div>
                 <div class="header">Self Projects</div>
                 <div class="grid">
-                    <div class="grid-item"  routerLink="/home">
-                        <p class="project-title">Portfolio Website (2023)</p>
+                    <div *ngFor="let project of allProjectView.selfProject" class="grid-item" [routerLink]="project.path">
+                        <p class="project-title">{{project.title}} ({{project.yearCompleted}})</p>
                         <div class="centralize-image">
-                            <img class="image-display" src="assets/img/portfolio.png"/>         
+                            <img class="image-display" [src]="project.imgSrc"/>         
                         </div>
                     </div>
                 </div>
                 <div class="header">School Projects</div>
                 <div class="grid">
-                    <div class="grid-item"  routerLink="/digimon">
-                        <p class="project-title">Competitive Digimon Dex (2023)</p>
+                    <div *ngFor="let project of allProjectView.schoolProject" class="grid-item" [routerLink]="project.path">
+                        <p class="project-title">{{project.title}} ({{project.yearCompleted}})</p>
                         <div class="centralize-image">
-                            <img class="image-display" src="assets/img/digimon.png"/> 
-                        </div>
-                        
-                    </div>
-                    <div class="grid-item"  routerLink="/scopemobile">
-                        <p class="project-title">TTSH Mobile Scope Managment System (2023)</p>
-                        <div class="centralize-image">
-                            <img class="image-display" src="assets/img/scopemobile.png"/>         
-                        </div>                     
-                    </div>
-                    <div class="grid-item"  routerLink="/lorable">
-                        <p class="project-title">Lora & BLE Mesh Outdoor tracking (2023)</p>
-                        <div class="centralize-image">
-                            <img class="image-display" src="assets/img/lorable.png"/>         
-                        </div>
-                    </div>
-                    <div class="grid-item"  routerLink="/smartcity">
-                        <p class="project-title">Smart City Server (2023)</p>
-                        <div class="centralize-image">
-                            <img class="image-display" src="assets/img/smartcity.png"/>         
-                        </div>
-                    </div>
-                    <div class="grid-item"  routerLink="/scopeweb">
-                        <p class="project-title">TTSH Website Scope Managment System (2022)</p>
-                        <div class="centralize-image">
-                            <img class="image-display" src="assets/img/scopeweb.png"/>         
-                        </div>
-                    </div>
-                    <div class="grid-item"  routerLink="/stegano">
-                        <p class="project-title">Steganography Application (2022)</p>
-                        <div class="centralize-image">
-                            <img class="image-display" src="assets/img/stegano.png"/>         
-                        </div>
-                    </div>
-                    <div class="grid-item"  routerLink="/naivebayes">
-                        <p class="project-title">Naive Bayes Classification Machine Learning (2021)</p>
-                        <div class="centralize-image">
-                            <img class="image-display" src="assets/img/naivebayes.png"/>         
-                        </div>
-                    </div>
-                    <div class="grid-item"  routerLink="/negativecnn">
-                        <p class="project-title">Negative Text Convolutional Neural Network Classification (2019)</p>
-                        <div class="centralize-image">
-                            <img class="image-display" src="assets/img/negativecnn.png"/>         
-                        </div>
-                    </div>
-                    <div class="grid-item"  routerLink="/singaporeeco">
-                        <p class="project-title">Singapore Economy Analysis (2017)</p>
-                        <div class="centralize-image">
-                            <img class="image-display" src="assets/img/singaporeeco.png"/>         
-                        </div>
-                    </div>
-                    <div class="grid-item"  routerLink="/snapnyp">
-                        <p class="project-title">SnapNYP Dashboard - First website(2016)</p>
-                        <div class="centralize-image">
-                            <img class="image-display" src="assets/img/snapnyp.png"/>         
+                            <img class="image-display" [src]="project.imgSrc"/>         
                         </div>
                     </div>
                 </div>

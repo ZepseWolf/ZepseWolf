@@ -21,13 +21,14 @@ export class HomeComponent implements OnInit ,AfterViewInit {
   allProject:any ={
     industryProject : [
       {
-        title: "Medical E-Document Ready Interface",
+        title: "Student's Medical E-Document Evaluation Platform",
         yearCompleted : "2023",
         imgSrc: "assets/img/edoc.png",
         type: ["Development"],
         toolUsed: [
           "Angular", "Flask"
-        ]
+        ],
+        path : "/edoc"
       },
       {
         title: "Wire-Bond Capacitance Testing Interface",
@@ -36,7 +37,8 @@ export class HomeComponent implements OnInit ,AfterViewInit {
         type: ["Development"],
         toolUsed: [
           "Angular", "Electron" , "JIRA" , "Bitbucket", "Slack"
-        ]
+        ],
+        path : "/vtep"
       },
       {
         title: "Matching Server with IBM Watson",
@@ -45,21 +47,33 @@ export class HomeComponent implements OnInit ,AfterViewInit {
         type: ["Development"],
         toolUsed: [
           "NodeJS", "Express" , "Mongodb" , "IBM Watson"
-        ]
+        ],
+        path : "/matching"
       } 
     ],
     selfProject: [
       {
         title: "Potfolio Website",
         yearCompleted : "2023",
-        imgSrc: "assets/img/edoc.png",
+        imgSrc: "assets/img/portfolio.png",
         type: ["Development"],
         toolUsed: [
           "Angular"
-        ]
+        ],
+        path : "/home"
       }
     ],
     schoolProject: [
+      {
+        title: "Airstrike - Detect Malisious Website with CNN & BILSTM",
+        yearCompleted : "2024",
+        imgSrc: "assets/img/Capstone_Poster.png",
+        type: ["Development", "Analysis"],
+        toolUsed: [
+          "Angular", "Flask", "Javascript", "Esprima", "Fasttext" , "Tensorflow"
+        ],
+        path : "/airstrike"
+      },
       {
         title: "Competitive Digimon Dex",
         yearCompleted : "2023",
@@ -67,7 +81,8 @@ export class HomeComponent implements OnInit ,AfterViewInit {
         type: ["Development"],
         toolUsed: [
           "Flask" , "Mongodb" , "SQL"
-        ]
+        ],
+        path : "/digimon"
       },
       {
         title: "TTSH Mobile Scope Management System",
@@ -76,7 +91,8 @@ export class HomeComponent implements OnInit ,AfterViewInit {
         type: ["Development"],
         toolUsed: [
           "Kotlin","Firebase"
-        ]
+        ],
+        path : "/scopemobile"
       },
       {
         title: "Lora & BLE Mesh for Outdoor tracking",
@@ -85,7 +101,8 @@ export class HomeComponent implements OnInit ,AfterViewInit {
         type: ["Development"],
         toolUsed: [
           "Kotlin","Firebase"
-        ]
+        ],
+        path : "/lorable"
       },
       {
         title: "Smart City Server",
@@ -94,7 +111,8 @@ export class HomeComponent implements OnInit ,AfterViewInit {
         type: ["Development", "Analysis"],
         toolUsed: [
           "Express","Mongodb", "SocketIO" , "Flutter" , "Apache" , "NGINX"
-        ]
+        ],
+        path : "/smartcity"
       },
       {
         title: "TTSH Website Scope Management System",
@@ -103,7 +121,8 @@ export class HomeComponent implements OnInit ,AfterViewInit {
         type: ["Development"],
         toolUsed: [
           "Angular","Firebase"
-        ]
+        ],
+        path : "/scopeweb"
       },
       {
         title: "Steganograph Application",
@@ -112,7 +131,8 @@ export class HomeComponent implements OnInit ,AfterViewInit {
         type: ["Development"],
         toolUsed: [
           "Eel","Python"
-        ]
+        ],
+        path : "/stegano"
       },
       {
         title: "Naive Bayes Classification",
@@ -121,7 +141,8 @@ export class HomeComponent implements OnInit ,AfterViewInit {
         type: ["Analysis"],
         toolUsed: [
           "C"
-        ]
+        ],
+        path : "/naivebayes"
       },
       {
         title: "Negative Text Convonlutional Neural Network Classifcation",
@@ -130,7 +151,8 @@ export class HomeComponent implements OnInit ,AfterViewInit {
         type: ["Development" ,"Analysis"],
         toolUsed: [
           "UIpath" , "Python" , "TensorFlow"
-        ]
+        ],
+        path : "/negativecnn"
       },
       {
         title: "Singapore Economy Analysis",
@@ -139,7 +161,8 @@ export class HomeComponent implements OnInit ,AfterViewInit {
         type: ["Analysis"],
         toolUsed: [
           "Tableau" , "VBScript"
-        ]
+        ],
+        path : "/singaporeeco"
       }
       ,
       {
@@ -149,7 +172,8 @@ export class HomeComponent implements OnInit ,AfterViewInit {
         type: ["Development"],
         toolUsed: [
           "HTML" , "CSS" , "Javascript"
-        ]
+        ],
+        path : "/snapnyp"
       }
     ]
   };
@@ -157,6 +181,7 @@ export class HomeComponent implements OnInit ,AfterViewInit {
   allProjectView:any;
 
   slideIndex: number = 1;
+  slideTimer : any ;
 
   ngAfterViewInit(): void {
     this._lifeCycleService.initCheck();
@@ -172,10 +197,9 @@ export class HomeComponent implements OnInit ,AfterViewInit {
       // }
       this.showSlides(this.slideIndex);
     });
-    setInterval(()=>{
-      this.plusSlides(1)
-    },5000)
+    this.createSlideTimer();
   }
+
 
   public startNow(): void{
     console.log("starting now")
@@ -196,6 +220,16 @@ export class HomeComponent implements OnInit ,AfterViewInit {
       paths[i].style.animation = `brand-animation 2s ease forwards ${Math.round(0.6+(i*0.3)*10)/10}s`;  
     }
   };
+
+  private createSlideTimer():void{
+    this.slideTimer = setInterval(()=>{
+      this.plusSlides(1)
+    },5000)
+  }
+  private resetSlideTimer():void{
+    clearInterval(this.slideTimer); 
+    this.createSlideTimer();
+  }
 
   public showFilter(event:any):void{
     console.log(event.target.parentNode.children[1]);
@@ -259,10 +293,12 @@ export class HomeComponent implements OnInit ,AfterViewInit {
 
   public currentSlide(n: number): void {
     this.showSlides(this.slideIndex = n);
+    this.resetSlideTimer();
   }
 
   public plusSlides(n: number): void {
     this.showSlides(this.slideIndex += n);
+    this.resetSlideTimer();
   }
 
   private showSlides(n: number): void {
