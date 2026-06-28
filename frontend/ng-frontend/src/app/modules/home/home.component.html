@@ -17,7 +17,7 @@
                         <path d="M535.154 103L512.114 70.6C509.522 70.888 506.834 71.032 504.05 71.032H476.978V103H466.322V2.2H504.05C516.914 2.2 526.994 5.272 534.29 11.416C541.586 17.56 545.234 26.008 545.234 36.76C545.234 44.632 543.218 51.304 539.186 56.776C535.25 62.152 529.586 66.04 522.194 68.44L546.818 103H535.154ZM503.762 61.96C513.746 61.96 521.378 59.752 526.658 55.336C531.938 50.92 534.578 44.728 534.578 36.76C534.578 28.6 531.938 22.36 526.658 18.04C521.378 13.624 513.746 11.416 503.762 11.416H476.978V61.96H503.762Z" stroke="#BF7272" stroke-width="2" mask="url(#path-1-outside-1)"/>
                         <path d="M588.562 11.416H553.138V2.2H634.643V11.416H599.219V103H588.562V11.416Z" stroke="#BF7272" stroke-width="2" mask="url(#path-1-outside-1)"/>
                     </svg>       -->
-                    <div class="sub-title" >FULLSTACK DEVELOPER + AI</div>
+                    <div class="sub-title" >FULLSTACK DATA SCIENTIST</div>
                     <div class="sub-title"style="font-family: mainFont-bold; margin-top:20px">Contact me at :</div>
                     <div class="sub-title"><img src="assets/img/github.png"/><a href="https://github.com/ZepseWolf">https://github.com/ZepseWolf</a></div>
                     <div class="sub-title"><img src="assets/img/linkin.png"/><a href="https://www.linkedin.com/in/see-kai-cong-714b35153/">https://www.linkedin.com/in/see-kai-cong-714b35153/</a></div>
@@ -35,12 +35,12 @@
                                  <div class="featured-tag main-shadow-theme" >Featured⭐</div>
                                 <div class="mySlides fade" routerLink="/airstrike">
                                     <img src="assets/img/Capstone_Poster.png">
-                                    <div class="text">Airstrike - Detect Malisious Website with CNN & BILSTM <br/>( 86% Validation Accuracy )</div>
+                                    <div class="text">Airstrike - Detect Malicious Websites with CNN & BiLSTM <br/>( 86% Validation Accuracy )</div>
                                 </div>
-                            
+
                                 <div class="mySlides fade">
                                     <img src="assets/img/edoc.png" routerLink="/edoc" >
-                                    <div class="text">Student's Medical E-Document Evaluation Platform <br/>( Evaluate 150 student every trimester )</div>
+                                    <div class="text">Student's Medical E-Document Evaluation Platform <br/>( Evaluates 150 Students Per Trimester )</div>
                                 </div>
                             
                                 <div class="mySlides fade">
@@ -129,12 +129,17 @@
         </div>
 
         <div class="side-text left">
-            <h1>Experience</h1> 
+            <h1>Experience</h1>
             <div class="divider"></div>
             <div class="text-info">
-                I began programming in 2016, gaining experience across school, industrial, and personal projects. With over  2+ years of professional experience, and {{programmingExperience}}+ years of programming and problem-solving, I’m eager to apply my expertise to create value for your company.
+                I began programming in 2016, gaining experience across academic, industry, and personal projects. With {{programmingExperience-7}}+ years of professional experience and {{programmingExperience}}+ years of programming and problem-solving, I am eager to apply my expertise to create value for your company.
             </div>
-            <!-- <button (click)="startNow()">Start Now</button> -->
+            <div class="tech-stack">
+                <div class="tech-item" *ngFor="let tool of allTools">
+                    <img [src]="getToolImagePath(tool)" [alt]="tool" class="whitten">
+                    <span>{{tool}}</span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -142,49 +147,59 @@
 
         <div class="side-image left">
             <div class="project-container">
-                <!-- <div class="filter-fix">
-                    <i class="fa-solid fa-filter" style="cursor:pointer" (click)="showFilter($event)"></i>
-                    <div class="dropdown-sort show ">
-                        <div id="checkbox-grid">
-                            <div class="row">
-                            <ng-container *ngFor="let tool of allTools;index as i">
-                                <div class="cell">
-                                    <input type="checkbox" (change)="onItemChecked($event,tool)" checked/>
-                                    <img [src]="'assets/img/'+tool+'.png'">
-                                    {{tool}}
-                                    
-                                  </div>
-                            </ng-container>
+                <div class="filter-fix" (click)="stopPropagation($event)">
+                    <button class="filter-btn" (click)="showFilter($event)" [class.filter-active]="isFiltered">
+                        <i class="fa-solid fa-filter"></i>
+                        <span *ngIf="isFiltered" class="filter-badge">{{selectedTools.length}}/{{allTools.length}}</span>
+                    </button>
+                    <div class="dropdown-sort" [class.open]="isFilterOpen">
+                        <div class="dropdown-header">
+                            <span>Filter by Technology</span>
+                            <div class="dropdown-actions">
+                                <button (click)="selectAll()">All</button>
+                                <button (click)="clearAll()">Clear</button>
                             </div>
-                          </div>
+                        </div>
+                        <div class="checkbox-grid">
+                            <ng-container *ngFor="let tool of allTools">
+                                <label class="cell" [class.cell-checked]="selectedTools.includes(tool)">
+                                    <input type="checkbox" [checked]="selectedTools.includes(tool)" (change)="onItemChecked($event, tool)"/>
+                                    <img [src]="getToolImagePath(tool)" [alt]="tool" class="whitten">
+                                    <span>{{tool}}</span>
+                                </label>
+                            </ng-container>
+                        </div>
                     </div>
-                </div> -->  
+                </div>
                 <div class="header">Industry Projects</div>
                 <div class="grid">
                     <div *ngFor="let project of allProjectView.industryProject" class="grid-item" [routerLink]="project.path">
                         <p class="project-title">{{project.title}} ({{project.yearCompleted}})</p>
                         <div class="centralize-image">
-                            <img class="image-display" [src]="project.imgSrc"/>         
+                            <img class="image-display" [src]="project.imgSrc"/>
                         </div>
                     </div>
+                    <p *ngIf="allProjectView.industryProject.length === 0" class="empty-state">No projects match the selected technologies.</p>
                 </div>
                 <div class="header">Self Projects</div>
                 <div class="grid">
                     <div *ngFor="let project of allProjectView.selfProject" class="grid-item" [routerLink]="project.path">
                         <p class="project-title">{{project.title}} ({{project.yearCompleted}})</p>
                         <div class="centralize-image">
-                            <img class="image-display" [src]="project.imgSrc"/>         
+                            <img class="image-display" [src]="project.imgSrc"/>
                         </div>
                     </div>
+                    <p *ngIf="allProjectView.selfProject.length === 0" class="empty-state">No projects match the selected technologies.</p>
                 </div>
                 <div class="header">School Projects</div>
                 <div class="grid">
                     <div *ngFor="let project of allProjectView.schoolProject" class="grid-item" [routerLink]="project.path">
                         <p class="project-title">{{project.title}} ({{project.yearCompleted}})</p>
                         <div class="centralize-image">
-                            <img class="image-display" [src]="project.imgSrc"/>         
+                            <img class="image-display" [src]="project.imgSrc"/>
                         </div>
                     </div>
+                    <p *ngIf="allProjectView.schoolProject.length === 0" class="empty-state">No projects match the selected technologies.</p>
                 </div>
             </div>
         </div>
@@ -193,7 +208,7 @@
             <h1>Projects</h1> 
             <div class="divider"></div>
             <div class="text-info">
-               These are the projects I had worked on over the years. <br><br>Click on the projects to learn more. 
+               These are the projects I have worked on over the years. <br><br>Click on a project to learn more.
             </div>
             <!-- <button (click)="startNow()">Create Now</button> -->
         </div>

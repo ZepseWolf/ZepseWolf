@@ -273,51 +273,153 @@ $information-background :rgb(36, 36, 36);
             padding: 30px;
 
             .project-container{
-                height: 100%;
+                align-self: stretch;
+                width: 100%;
                 overflow: auto;
                 padding: 0 10px;
+                box-sizing: border-box;
                 // position: relative;
                 
                 .filter-fix{
                     position: sticky;
-                    top : 20px;
-                    right: 20px;
+                    top: 16px;
+                    right: 0;
                     float: right;
+                    z-index: 10;
+
+                    .filter-btn {
+                        display: flex;
+                        align-items: center;
+                        gap: 6px;
+                        background: #363636;
+                        border: 1px solid #555;
+                        color: white;
+                        padding: 8px 14px;
+                        border-radius: 6px;
+                        cursor: pointer;
+                        font-size: 14px;
+                        transition: background 0.2s;
+
+                        &:hover {
+                            background: #444;
+                        }
+
+                        &.filter-active {
+                            border-color: #BF7272;
+                            color: #BF7272;
+                        }
+
+                        .filter-badge {
+                            font-size: 11px;
+                            background: #BF7272;
+                            color: white;
+                            border-radius: 10px;
+                            padding: 1px 6px;
+                        }
+                    }
 
                     .dropdown-sort {
+                        display: none;
                         position: absolute;
                         right: 0;
-                        background-color: #363636;
-                        width: 400px;
-                        height: 400px;
-                        overflow: auto;
-                        padding: 20px;
+                        top: calc(100% + 8px);
+                        background-color: #2a2a2a;
+                        border: 1px solid #555;
+                        border-radius: 8px;
+                        width: 360px;
+                        max-height: 420px;
+                        overflow-y: auto;
+                        box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+                        z-index: 100;
 
-                        #checkbox-grid {
-                            // display: grid;
-                            grid-template-columns: repeat(3, 1fr);
-                            grid-gap: 30px;
-                          }
-                          
-                          .row {
-                            display: grid;
-                            
-                            grid-template-columns: repeat(3, 1fr);
-                          }
-                          
-                          .cell {
-                            padding: 20px;
+                        &.open {
+                            display: block;
+                        }
+
+                        .dropdown-header {
                             display: flex;
-                            justify-content: center;
+                            justify-content: space-between;
                             align-items: center;
-                            flex-direction: column;
+                            padding: 12px 16px;
+                            border-bottom: 1px solid #444;
+                            font-size: 13px;
+                            font-weight: bold;
+                            color: #ccc;
+                            position: sticky;
+                            top: 0;
+                            background: #2a2a2a;
 
-                            img{
-                                margin-top: 8px;
-                                width: 40px;
-                                height: 40px;
+                            .dropdown-actions {
+                                display: flex;
+                                gap: 6px;
+
+                                button {
+                                    background: #444;
+                                    border: none;
+                                    color: #ccc;
+                                    padding: 3px 10px;
+                                    border-radius: 4px;
+                                    cursor: pointer;
+                                    font-size: 11px;
+                                    min-width: unset;
+                                    height: unset;
+                                    margin: 0;
+                                    font-family: inherit;
+
+                                    &:hover {
+                                        background: #BF7272;
+                                        color: white;
+                                    }
+                                }
                             }
-                          }
+                        }
+
+                        .checkbox-grid {
+                            display: grid;
+                            grid-template-columns: repeat(3, 1fr);
+                            gap: 4px;
+                            padding: 10px;
+                        }
+
+                        .cell {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            padding: 10px 6px;
+                            border-radius: 6px;
+                            cursor: pointer;
+                            border: 1px solid transparent;
+                            transition: background 0.15s, border-color 0.15s;
+                            gap: 4px;
+
+                            &:hover {
+                                background: #3a3a3a;
+                            }
+
+                            &.cell-checked {
+                                border-color: #BF7272;
+                                background: rgba(191, 114, 114, 0.12);
+                            }
+
+                            input[type="checkbox"] {
+                                display: none;
+                            }
+
+                            img {
+                                width: 32px;
+                                height: 32px;
+                                object-fit: contain;
+                            }
+
+                            span {
+                                font-size: 10px;
+                                color: #ccc;
+                                text-align: center;
+                                line-height: 1.2;
+                                word-break: break-word;
+                            }
+                        }
                     }
                 }
                 
@@ -345,6 +447,16 @@ $information-background :rgb(36, 36, 36);
                 margin: 20px 0;
                 }
         
+                .empty-state {
+                    grid-column: 1 / -1;
+                    text-align: center;
+                    font-size: 13px;
+                    color: rgba(255,255,255,0.45);
+                    padding: 16px 0;
+                    margin: 0;
+                    font-style: italic;
+                }
+
                 .grid-item {
                 // background-color: #f2f2f2;
                 padding: 20px;
@@ -413,8 +525,36 @@ $information-background :rgb(36, 36, 36);
             .text-info{
                 text-align: center;
                 font-size: 18px;
-                font-family: mainFont-regular; 
+                font-family: mainFont-regular;
                 line-height: 1.6;
+            }
+
+            .tech-stack {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px 16px;
+                margin-top: 24px;
+
+                .tech-item {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 5px;
+
+                    img {
+                        width: 30px;
+                        height: 30px;
+                        object-fit: contain;
+                    }
+
+                    span {
+                        font-size: 10px;
+                        color: rgba(255,255,255,0.65);
+                        text-align: center;
+                        line-height: 1.2;
+                    }
+                }
             }
 
             button{
@@ -446,10 +586,6 @@ $information-background :rgb(36, 36, 36);
             float:right;
         }
     }
-}
-
-.show{
-    display: none;
 }
 
 @keyframes brand-animation{

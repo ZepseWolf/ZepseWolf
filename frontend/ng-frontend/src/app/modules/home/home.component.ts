@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild ,AfterViewInit,OnDestroy} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, OnDestroy, HostListener } from '@angular/core';
 
 // Services
 import { LifeCycleService } from 'src/app/services/life-cycle.service';
@@ -8,13 +8,15 @@ import { LifeCycleService } from 'src/app/services/life-cycle.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit ,AfterViewInit,OnDestroy {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('svgTablet') svgTablet!: ElementRef;
   @ViewChild('svgSnake') svgSnake!: ElementRef;
 
   allTools: string[] = [];
   selectedTools: string[] = [];
-  programmingExperience: number = new Date().getFullYear()-2016;
+  isFilterOpen: boolean = false;
+  programmingExperience: number = new Date().getFullYear() - 2016;
+
   allProject = {
     industryProject: [
       {
@@ -54,7 +56,7 @@ export class HomeComponent implements OnInit ,AfterViewInit,OnDestroy {
     ],
     schoolProject: [
       {
-        title: "Airstrike - Detect Malicious Website with CNN & BILSTM",
+        title: "Airstrike - Detect Malicious Website with CNN & BiLSTM",
         yearCompleted: "2024",
         imgSrc: "assets/img/Capstone_Poster.png",
         type: ["Development", "Analysis"],
@@ -167,22 +169,61 @@ export class HomeComponent implements OnInit ,AfterViewInit,OnDestroy {
     this.closeSlideTimer();
   }
 
-  private createSlideTimer(): void {
-    this.slideTimer = setInterval(() => {
-      this.plusSlides(1);
-    }, 5000);
+  @HostListener('document:click')
+  onDocumentClick(): void {
+    this.isFilterOpen = false;
   }
 
-  private closeSlideTimer(): void {
-    if (this.slideTimer) {
-      clearInterval(this.slideTimer);
-      this.slideTimer = null;
+  public showFilter(event: Event): void {
+    event.stopPropagation();
+    this.isFilterOpen = !this.isFilterOpen;
+  }
+
+  public stopPropagation(event: Event): void {
+    event.stopPropagation();
+  }
+
+  public onItemChecked(event: any, tool: string): void {
+    const isChecked = event.target.checked;
+    if (isChecked) {
+      if (!this.selectedTools.includes(tool)) {
+        this.selectedTools.push(tool);
+      }
+    } else {
+      this.selectedTools = this.selectedTools.filter(t => t !== tool);
     }
+    this.applyFilter();
   }
 
-  private resetSlideTimer(): void {
-    this.closeSlideTimer();
-    this.createSlideTimer();
+  public selectAll(): void {
+    this.selectedTools = [...this.allTools];
+    this.allProjectView = this.allProject;
+  }
+
+  public clearAll(): void {
+    this.selectedTools = [];
+    this.applyFilter();
+  }
+
+  public get isFiltered(): boolean {
+    return this.selectedTools.length !== this.allTools.length;
+  }
+
+  public getToolImagePath(tool: string): string {
+    return 'assets/img/' + tool.toLowerCase().replace(/\s+/g, '') + '.png';
+  }
+
+  private applyFilter(): void {
+    const filterProjects = (projects: any[]) =>
+      projects.filter(project =>
+        project.toolUsed.some((tool: string) => this.selectedTools.includes(tool))
+      );
+
+    this.allProjectView = {
+      industryProject: filterProjects(this.allProject.industryProject),
+      selfProject: filterProjects(this.allProject.selfProject),
+      schoolProject: filterProjects(this.allProject.schoolProject),
+    };
   }
 
   private getAllPossibleTool(): void {
@@ -202,21 +243,22 @@ export class HomeComponent implements OnInit ,AfterViewInit,OnDestroy {
     addTools(this.allProject.schoolProject);
   }
 
-  public onItemChecked(event: any, tool: string): void {
-    const isChecked = event.target.checked;
-    if (isChecked) {
-      if (!this.selectedTools.includes(tool)) {
-        this.selectedTools.push(tool);
-      }
-    } else {
-      this.selectedTools = this.selectedTools.filter(selectedTool => selectedTool !== tool);
+  private createSlideTimer(): void {
+    this.slideTimer = setInterval(() => {
+      this.plusSlides(1);
+    }, 5000);
+  }
+
+  private closeSlideTimer(): void {
+    if (this.slideTimer) {
+      clearInterval(this.slideTimer);
+      this.slideTimer = null;
     }
   }
 
-  public generateProject(): void {
-    Object.values(this.allProjectView).flat().forEach(project => {
-      console.log(project);
-    });
+  private resetSlideTimer(): void {
+    this.closeSlideTimer();
+    this.createSlideTimer();
   }
 
   public currentSlide(n: number): void {
@@ -251,21 +293,4 @@ export class HomeComponent implements OnInit ,AfterViewInit,OnDestroy {
     (slides[this.slideIndex - 1] as HTMLElement).style.display = 'flex';
     dots[this.slideIndex - 1].className += ' active';
   }
-
-  // private doAnimation(): void{
-  //   // THIS IS:// For moving image
-  //   var notebook = document.getElementById("brand-notebook");
-  //   var items = document.getElementById("brand-camera");
-
-  //   // THIS IS:// For animated logo
-  //   var brand = document.getElementById('brandname');
-  //   var paths= brand!.children as HTMLCollectionOf<HTMLElement>; 
-  //   notebook!.style.animation = ' notebook 1s ease forwards';
-  //   items!.style.animation = ' items 1s ease forwards';
-  //   brand!.style.animation = ' brand-fill 1s ease forwards 3.5s';
-  //   for (var i = 0; i < paths.length; i++) {
-  //     paths[i].style.animation = `brand-animation 2s ease forwards ${Math.round(0.6+(i*0.3)*10)/10}s`;  
-  //   }
-  // };
-
 }
