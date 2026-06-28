@@ -256,6 +256,71 @@ $information-background :rgb(36, 36, 36);
     //     flex-direction: row;
     // }
 
+    .end-page {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #141414;
+
+        .end-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .end-line {
+            width: 60px;
+            height: 1px;
+            background: rgba(191, 114, 114, 0.4);
+        }
+
+        .end-label {
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: rgba(191, 114, 114, 0.6);
+            margin: 0;
+        }
+
+        .end-title {
+            font-size: 36px;
+            font-family: mainFont-bold;
+            color: white;
+            margin: 0;
+        }
+
+        .end-sub {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.45);
+            margin: 0;
+        }
+
+        .end-restart {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+            padding: 12px 28px;
+            border-radius: 30px;
+            border: 1px solid rgba(191, 114, 114, 0.5);
+            color: #BF7272;
+            font-size: 14px;
+            font-family: mainFont-bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s, border-color 0.2s;
+
+            &:hover {
+                background: rgba(191, 114, 114, 0.12);
+                border-color: #BF7272;
+                color: #BF7272;
+            }
+
+            i { font-size: 13px; }
+        }
+    }
+
     .information-div{
         background-color: $information-background;
 
@@ -280,11 +345,47 @@ $information-background :rgb(36, 36, 36);
                 box-sizing: border-box;
                 // position: relative;
                 
-                .filter-fix{
+                .project-top-bar {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
                     position: sticky;
-                    top: 16px;
-                    right: 0;
-                    float: right;
+                    top: 0;
+                    z-index: 10;
+                    background: #BF7272;
+                    padding: 8px 0;
+
+                    .role-tabs {
+                        display: flex;
+                        gap: 4px;
+
+                        .role-tab {
+                            background: rgba(0, 0, 0, 0.2);
+                            border: 1px solid transparent;
+                            color: white;
+                            padding: 5px 12px;
+                            border-radius: 4px;
+                            cursor: pointer;
+                            font-size: 12px;
+                            font-family: inherit;
+                            transition: background 0.2s;
+                            min-width: unset;
+                            height: unset;
+                            margin: 0;
+
+                            &:hover {
+                                background: rgba(0, 0, 0, 0.3);
+                            }
+
+                            &.active {
+                                background: rgba(0, 0, 0, 0.5);
+                                border-color: white;
+                            }
+                        }
+                    }
+                }
+
+                .filter-fix{
                     z-index: 10;
 
                     .filter-btn {
@@ -464,10 +565,37 @@ $information-background :rgb(36, 36, 36);
                 font-size: 16px;
                 background-color: #BF7272;
                 cursor: pointer;
-                
+
                 .project-title{
                     font-size: 12px;
                     line-height:1.3em;
+                }
+
+                .role-badges {
+                    display: flex;
+                    gap: 4px;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    margin: 4px 0 8px;
+
+                    .role-badge {
+                        font-size: 9px;
+                        padding: 2px 7px;
+                        border-radius: 10px;
+                        font-weight: bold;
+                        text-transform: uppercase;
+                        letter-spacing: 0.4px;
+
+                        &.badge-ds {
+                            background: rgba(70, 130, 200, 0.9);
+                            color: white;
+                        }
+
+                        &.badge-fs {
+                            background: rgba(40, 40, 40, 0.75);
+                            color: white;
+                        }
+                    }
                 }
 
                 .centralize-image{
@@ -586,6 +714,133 @@ $information-background :rgb(36, 36, 36);
             float:right;
         }
     }
+}
+
+// ── Role selection modal ─────────────────────────────────────────
+.role-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.78);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: modal-fade-in 0.3s ease;
+}
+
+.role-modal {
+    background: #1c1c1c;
+    border: 1px solid #2e2e2e;
+    border-radius: 20px;
+    padding: 48px 52px;
+    text-align: center;
+    max-width: 460px;
+    width: 90%;
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.7);
+    animation: modal-slide-up 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    .role-modal-eyebrow {
+        font-size: 11px;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: #BF7272;
+        margin: 0 0 12px;
+    }
+
+    .role-modal-title {
+        font-size: 22px;
+        font-family: mainFont-bold;
+        color: white;
+        margin: 0 0 8px;
+        line-height: 1.3;
+    }
+
+    .role-modal-sub {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.45);
+        margin: 0 0 36px;
+    }
+
+    .role-modal-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .role-modal-btn {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 20px;
+            border-radius: 12px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            text-align: left;
+            width: 100%;
+            min-width: unset;
+            height: unset;
+            margin: 0;
+            font-family: inherit;
+            transition: transform 0.15s ease, background 0.2s;
+
+            &:hover {
+                transform: translateY(-2px);
+            }
+
+            i {
+                font-size: 20px;
+                flex-shrink: 0;
+                width: 24px;
+                text-align: center;
+            }
+
+            .btn-label {
+                font-size: 15px;
+                font-family: mainFont-bold;
+                display: block;
+                line-height: 1.2;
+            }
+
+            .btn-hint {
+                font-size: 11px;
+                opacity: 0.6;
+                display: block;
+                line-height: 1.2;
+                margin-top: 2px;
+            }
+
+            &.ds {
+                background: rgba(70, 130, 200, 0.12);
+                border-color: rgba(70, 130, 200, 0.4);
+                color: #7bbde8;
+                &:hover { background: rgba(70, 130, 200, 0.22); }
+            }
+
+            &.fs {
+                background: rgba(191, 114, 114, 0.12);
+                border-color: rgba(191, 114, 114, 0.4);
+                color: #BF7272;
+                &:hover { background: rgba(191, 114, 114, 0.22); }
+            }
+
+            &.all {
+                background: rgba(255, 255, 255, 0.04);
+                border-color: rgba(255, 255, 255, 0.12);
+                color: rgba(255, 255, 255, 0.6);
+                &:hover { background: rgba(255, 255, 255, 0.08); }
+            }
+        }
+    }
+}
+
+@keyframes modal-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes modal-slide-up {
+    from { transform: translateY(40px) scale(0.97); opacity: 0; }
+    to   { transform: translateY(0)    scale(1);    opacity: 1; }
 }
 
 @keyframes brand-animation{

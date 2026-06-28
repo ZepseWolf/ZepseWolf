@@ -1,0 +1,173 @@
+.main-container {
+    width: calc(100% - 120px);
+    margin: 20px 40px;
+    padding: 20px;
+    background-color: rgb(28, 28, 28);
+    color: white;
+    height: calc(100vh - 136px);
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &::-webkit-scrollbar { width: 1em; }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 2px;
+        background-color: #d7d7d7;
+        outline: 1px solid #d7d7d7;
+    }
+}
+
+.coming-soon-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    max-width: 480px;
+}
+
+// ── Ring animation ───────────────────────────────────────────────
+.ring-container {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    margin-bottom: 36px;
+}
+
+.ring-svg {
+    width: 100%;
+    height: 100%;
+
+    .ring-track {
+        fill: none;
+        stroke: #1e3050;
+        stroke-width: 6;
+    }
+
+    .ring-spin {
+        fill: none;
+        stroke: #2a6cc4;
+        stroke-width: 6;
+        stroke-linecap: round;
+        stroke-dasharray: 120 390;
+        transform-origin: center;
+        animation: spin 2.4s linear infinite;
+    }
+
+    .ring-inner {
+        fill: none;
+        stroke: #1a2a40;
+        stroke-width: 2;
+        stroke-dasharray: 4 8;
+        transform-origin: center;
+        animation: spin-reverse 6s linear infinite;
+    }
+
+    .ring-dot {
+        fill: #2a6cc4;
+        transform-origin: center;
+        animation: spin 2.4s linear infinite;
+    }
+}
+
+.ring-icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    color: #2a6cc4;
+    animation: pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+@keyframes spin-reverse {
+    to { transform: rotate(-360deg); }
+}
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+// ── Text content ─────────────────────────────────────────────────
+.label-badge {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #2a6cc4;
+    border: 1px solid #2a6cc4;
+    border-radius: 20px;
+    padding: 4px 14px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.coming-title {
+    font-size: 42px;
+    font-family: mainFont-bold;
+    margin: 0 0 8px;
+    color: white;
+    letter-spacing: 1px;
+}
+
+.coming-project {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.65);
+    margin: 0 0 16px;
+    line-height: 1.5;
+}
+
+.coming-year {
+    font-size: 13px;
+    font-family: mainFont-bold;
+    background: rgba(42, 108, 196, 0.2);
+    color: #6aaff0;
+    border-radius: 6px;
+    padding: 4px 16px;
+    margin-bottom: 24px;
+    display: inline-block;
+}
+
+.coming-desc {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.coming-divider {
+    width: 40px;
+    height: 2px;
+    background: #2a6cc4;
+    margin: 28px auto;
+    border-radius: 2px;
+}
+
+.coming-tags {
+    display: flex;
+    gap: 8px;
+
+    .tag {
+        font-size: 11px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 5px 14px;
+        border-radius: 20px;
+
+        &.ds {
+            background: rgba(70, 130, 200, 0.2);
+            color: #6aaff0;
+            border: 1px solid rgba(70, 130, 200, 0.4);
+        }
+
+        &.fs {
+            background: rgba(191, 114, 114, 0.2);
+            color: #BF7272;
+            border: 1px solid rgba(191, 114, 114, 0.4);
+        }
+    }
+}

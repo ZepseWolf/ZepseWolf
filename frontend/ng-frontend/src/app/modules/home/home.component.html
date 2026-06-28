@@ -132,7 +132,7 @@
             <h1>Experience</h1>
             <div class="divider"></div>
             <div class="text-info">
-                I began programming in 2016, gaining experience across academic, industry, and personal projects. With {{programmingExperience-7}}+ years of professional experience and {{programmingExperience}}+ years of programming and problem-solving, I am eager to apply my expertise to create value for your company.
+                I began programming in 2016, gaining experience across academic, industry, and personal projects. With {{programmingExperience-7}}+ years of professional experience and {{programmingExperience}}+ years of programming and problem-solving, I am eager to apply my expertise to create value for your team.
             </div>
             <div class="tech-stack">
                 <div class="tech-item" *ngFor="let tool of allTools">
@@ -147,27 +147,34 @@
 
         <div class="side-image left">
             <div class="project-container">
-                <div class="filter-fix" (click)="stopPropagation($event)">
-                    <button class="filter-btn" (click)="showFilter($event)" [class.filter-active]="isFiltered">
-                        <i class="fa-solid fa-filter"></i>
-                        <span *ngIf="isFiltered" class="filter-badge">{{selectedTools.length}}/{{allTools.length}}</span>
-                    </button>
-                    <div class="dropdown-sort" [class.open]="isFilterOpen">
-                        <div class="dropdown-header">
-                            <span>Filter by Technology</span>
-                            <div class="dropdown-actions">
-                                <button (click)="selectAll()">All</button>
-                                <button (click)="clearAll()">Clear</button>
+                <div class="project-top-bar" (click)="stopPropagation($event)">
+                    <div class="role-tabs">
+                        <button class="role-tab" [class.active]="selectedRole === 'all'" (click)="setRole('all')">All</button>
+                        <button class="role-tab" [class.active]="selectedRole === 'data-scientist'" (click)="setRole('data-scientist')">Data Scientist</button>
+                        <button class="role-tab" [class.active]="selectedRole === 'full-stack'" (click)="setRole('full-stack')">Full Stack</button>
+                    </div>
+                    <div class="filter-fix">
+                        <button class="filter-btn" (click)="showFilter($event)" [class.filter-active]="isFiltered">
+                            <i class="fa-solid fa-filter"></i>
+                            <span *ngIf="isFiltered" class="filter-badge">{{selectedTools.length}}/{{allTools.length}}</span>
+                        </button>
+                        <div class="dropdown-sort" [class.open]="isFilterOpen">
+                            <div class="dropdown-header">
+                                <span>Filter by Technology</span>
+                                <div class="dropdown-actions">
+                                    <button (click)="selectAll()">All</button>
+                                    <button (click)="clearAll()">Clear</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="checkbox-grid">
-                            <ng-container *ngFor="let tool of allTools">
-                                <label class="cell" [class.cell-checked]="selectedTools.includes(tool)">
-                                    <input type="checkbox" [checked]="selectedTools.includes(tool)" (change)="onItemChecked($event, tool)"/>
-                                    <img [src]="getToolImagePath(tool)" [alt]="tool" class="whitten">
-                                    <span>{{tool}}</span>
-                                </label>
-                            </ng-container>
+                            <div class="checkbox-grid">
+                                <ng-container *ngFor="let tool of allTools">
+                                    <label class="cell" [class.cell-checked]="selectedTools.includes(tool)">
+                                        <input type="checkbox" [checked]="selectedTools.includes(tool)" (change)="onItemChecked($event, tool)"/>
+                                        <img [src]="getToolImagePath(tool)" [alt]="tool" class="whitten">
+                                        <span>{{tool}}</span>
+                                    </label>
+                                </ng-container>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -175,31 +182,40 @@
                 <div class="grid">
                     <div *ngFor="let project of allProjectView.industryProject" class="grid-item" [routerLink]="project.path">
                         <p class="project-title">{{project.title}} ({{project.yearCompleted}})</p>
+                        <div class="role-badges">
+                            <span class="role-badge" *ngFor="let role of project.roles" [ngClass]="{'badge-ds': role === 'Data Scientist', 'badge-fs': role === 'Full Stack'}">{{role}}</span>
+                        </div>
                         <div class="centralize-image">
                             <img class="image-display" [src]="project.imgSrc"/>
                         </div>
                     </div>
-                    <p *ngIf="allProjectView.industryProject.length === 0" class="empty-state">No projects match the selected technologies.</p>
+                    <p *ngIf="allProjectView.industryProject.length === 0" class="empty-state">No projects match the selected filters.</p>
                 </div>
                 <div class="header">Self Projects</div>
                 <div class="grid">
                     <div *ngFor="let project of allProjectView.selfProject" class="grid-item" [routerLink]="project.path">
                         <p class="project-title">{{project.title}} ({{project.yearCompleted}})</p>
+                        <div class="role-badges">
+                            <span class="role-badge" *ngFor="let role of project.roles" [ngClass]="{'badge-ds': role === 'Data Scientist', 'badge-fs': role === 'Full Stack'}">{{role}}</span>
+                        </div>
                         <div class="centralize-image">
                             <img class="image-display" [src]="project.imgSrc"/>
                         </div>
                     </div>
-                    <p *ngIf="allProjectView.selfProject.length === 0" class="empty-state">No projects match the selected technologies.</p>
+                    <p *ngIf="allProjectView.selfProject.length === 0" class="empty-state">No projects match the selected filters.</p>
                 </div>
                 <div class="header">School Projects</div>
                 <div class="grid">
                     <div *ngFor="let project of allProjectView.schoolProject" class="grid-item" [routerLink]="project.path">
                         <p class="project-title">{{project.title}} ({{project.yearCompleted}})</p>
+                        <div class="role-badges">
+                            <span class="role-badge" *ngFor="let role of project.roles" [ngClass]="{'badge-ds': role === 'Data Scientist', 'badge-fs': role === 'Full Stack'}">{{role}}</span>
+                        </div>
                         <div class="centralize-image">
                             <img class="image-display" [src]="project.imgSrc"/>
                         </div>
                     </div>
-                    <p *ngIf="allProjectView.schoolProject.length === 0" class="empty-state">No projects match the selected technologies.</p>
+                    <p *ngIf="allProjectView.schoolProject.length === 0" class="empty-state">No projects match the selected filters.</p>
                 </div>
             </div>
         </div>
@@ -244,5 +260,44 @@
         </div>
     </div> -->
 
-    
+    <div class="background end-page">
+        <div class="end-content">
+            <div class="end-line"></div>
+            <p class="end-label">END OF PORTFOLIO</p>
+            <h1 class="end-title">You have come to the end.</h1>
+            <p class="end-sub">Thank you for your time.</p>
+            <a class="end-restart" (click)="scrollToTop()">
+                <i class="fa-solid fa-arrow-up"></i>
+                Start Over
+            </a>
+            <div class="end-line"></div>
+        </div>
+    </div>
+
+    <!-- Role Selection Modal -->
+    <div class="role-modal-overlay" *ngIf="showRoleModal">
+        <div class="role-modal">
+            <p class="role-modal-eyebrow">Welcome</p>
+            <h2 class="role-modal-title">What role are you hiring for?</h2>
+            <p class="role-modal-sub">Filter projects by your area of interest.</p>
+            <div class="role-modal-buttons">
+                <button class="role-modal-btn ds" (click)="selectModalRole('data-scientist')">
+                    <i class="fa-solid fa-brain"></i>
+                    <span class="btn-label">Data Scientist</span>
+                    <span class="btn-hint">ML · AI · ETL · Analysis</span>
+                </button>
+                <button class="role-modal-btn fs" (click)="selectModalRole('full-stack')">
+                    <i class="fa-solid fa-code"></i>
+                    <span class="btn-label">Full Stack</span>
+                    <span class="btn-hint">Web · Mobile · Backend</span>
+                </button>
+                <button class="role-modal-btn all" (click)="selectModalRole('all')">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span class="btn-label">View All</span>
+                    <span class="btn-hint">Show everything</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
 </div>

@@ -20,6 +20,7 @@ import { SteganoModule } from './modules/stegano/stegano.module';
 import { VtepModule } from './modules/vtep/vtep.module';
 import { LorableModule } from './modules/lorable/lorable.module';
 import { AirstrikeModule } from './modules/airstrike/airstrike.module';
+import { KeppelModule } from './modules/keppel/keppel.module';
 
 const routes: Routes = [
   {path: '' , redirectTo: 'home' , pathMatch: 'full' },
@@ -83,6 +84,10 @@ const routes: Routes = [
   {
     path: 'airstrike',
     loadChildren:() => AirstrikeModule
+  },
+  {
+    path: 'keppel',
+    loadChildren:() => KeppelModule
   },
   {path: '**' , redirectTo: 'home'}
 ];
